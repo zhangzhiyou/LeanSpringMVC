@@ -43,6 +43,7 @@
           <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.13" />
           <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-lgpl:1.9.13" />
           <element id="library" level="project" name="commons-beanutils-1.7.0" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.7.3" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="leanSpringMVC/web/Web" />

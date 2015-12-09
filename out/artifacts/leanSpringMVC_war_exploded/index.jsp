@@ -21,16 +21,18 @@
 
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script type="text/javascript" src="bootstrap/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script type="text/javascript" src="bootstrap/bootstrap.min.js"></script>
     <title></title>
+    <script type="text/javascript">
+      $("input").append("<b>jjjld</b>");
+    </script>
   </head>
   <body>
   <h1 class="page-header">用户登陆</h1>
-
     <form class="form-horizontal" action="/login/verify" method="post">
-
       <div class="form-group">
         <div class="col-sm-5">
           <input type="text" class="form-control" name="username" placeholder="用户名/邮箱"/>

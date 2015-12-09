@@ -72,9 +72,13 @@ public class UserDao {
 
     public JSONArray finall(){
         String sql = "select * from user";
-//        Map<String,Object> map = jdbcTemplate.queryForMap(sql);
+
         List list = jdbcTemplate.queryForList(sql);
         JSONArray jsonList = JSONArray.fromObject(list);
+
+        /**
+         * 将list集合转化为map集合类
+         * */
 //        Map<String,Obj  JSONArray jsonList = JSONArray.fromObject(list);ect> map = new HashMap<String, Object>();
 //            String s="";
 //        for(Map<String,Object> m:list){

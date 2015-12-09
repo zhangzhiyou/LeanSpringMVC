@@ -8,17 +8,24 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <script type="text/javascript" src="${pageContext.request.contextPath}js/jquery.js"></script>
+  <script type="text/javascript" src="/js/jquery.js"></script>
   <script type="text/javascript">
-    $(document).ready(function(){
-        alert("****");
-        $("p").append("<h1>Hello world!</h1>");
-    });
+    alert("ho");
+//    $(document).ready(function(){
+      alert("he+++");
+      $("#hello").click(function(){
+        alert("***");
+        he = $.ajax({url:"/jingtai/hello.txt",async:false});
+        $("#ajax").html(he.responseText);
+      });
+      $("p").append(" <b>Hello world!</b>");
+//    });
   </script>
 </head>
 <body>
+<div id="ajax"></div>
 <p>This is a paragraph.</p>
 <p>This is another paragraph.</p>
-<button>在每个 p 元素的结尾添加内容</button>
+<button id="hello" type="button">改变内容</button>
 </body>
 </html>

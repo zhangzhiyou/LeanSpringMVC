@@ -30,14 +30,19 @@ import java.util.Map;
 public class Login {
     @RequestMapping(value ="/verify",method = RequestMethod.POST)
 
+
     public ModelAndView verify(HttpServletRequest request,HttpServletResponse response) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         User user = new User(username,password);
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
         UserDao userDao = (UserDao) context.getBean("userDao");
+        userDao.check("love");
+//        Commont commont = (Commont) context.getBean("commont");
+//        commont.execute();
 //        userDao.addUser(user);
         String view = "login";
+
 
         /**
          * modelandview中的数据默认放到request里面
@@ -59,6 +64,11 @@ public class Login {
 //        }
        int total =   userDao.findtotal(username,password);
         if(total>0){
+
+            /**
+             * 分装成json,使用out.print("String")传到前端
+             * 前端通过success:function(result){ result.id}获取值
+             * */
        //     PrintWriter out = null;
 //            response.setContentType("application/json");
 //

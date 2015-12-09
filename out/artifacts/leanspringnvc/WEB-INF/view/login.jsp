@@ -18,7 +18,7 @@
             alert("hee");
             var he =${requestScope.user};
             $(".ids").append("<h1>hoooo</h1>");
-            $("#id").append("<select>")
+            $("#id").append("<select>");
             for(var i=0;i<he.length;i++){
                 var obj = he[i];
                 alert(obj.id);

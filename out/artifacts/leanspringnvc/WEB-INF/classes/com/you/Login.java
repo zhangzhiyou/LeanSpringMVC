@@ -59,6 +59,11 @@ public class Login {
 //        }
        int total =   userDao.findtotal(username,password);
         if(total>0){
+
+            /**
+             * 分装成json,使用out.print("String")传到前端
+             * 前端通过success:function(result){ result.id}获取值
+             * */
        //     PrintWriter out = null;
 //            response.setContentType("application/json");
 //

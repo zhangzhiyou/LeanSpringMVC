@@ -5,6 +5,7 @@ import com.you.model.User;
 
 
 import net.sf.json.JSONArray;
+import org.aspectj.lang.JoinPoint;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 
 
@@ -62,13 +63,6 @@ public class UserDao {
 ////            obj.put("username",o.getUsername());
 ////            obj.put("password",o.getPassword());
 ////        }
-//        //测试取出list集合中的数据
-////        Iterator it = list.iterator();
-////        while (it.hasNext()){
-////            System.out.println(it.next());
-////        }
-//        return list;
-//    }
 
     public JSONArray finall(){
         String sql = "select * from user";
@@ -103,5 +97,14 @@ public class UserDao {
 //        }
         return jsonList;
     }
+
+    public void check(String name){
+        System.out.println("=====验证是否合法======="+name);
+    }
+    public void hello(){
+        System.out.println("+++++++");
+    }
+
+
 }
 

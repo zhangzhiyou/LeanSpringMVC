@@ -10,22 +10,21 @@
 <head>
     <title></title>
     <meta charset="utf-8">
-    <script type="text/javascript" src="../../js/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="../../js/jquery.js"></script>
     <script type="text/javascript" src="../../js/jquery.easyui.min.js"></script>
-
     <script type="text/javascript">
-        $(document).ready(function(){
+
             alert("hee");
+
             var he =${requestScope.user};
-            $(".ids").append("<h1>hoooo</h1>");
-            $("#id").append("<select>")
+//            $("#id").append("<select>");
             for(var i=0;i<he.length;i++){
                 var obj = he[i];
-                alert(obj.id);
-                $("#id").append("<option>"+obj.id+"</option>")
+                alert(obj.id+obj.username);
+                $("p").append("hsdf");
+//                $("#id").append("<option>"+obj.id+"</option>")
             }
-            $("#id").append("</select>");
-        });
+//            $("#id").append("</select>");
     </script>
 </head>
 <body>
@@ -33,9 +32,8 @@
      <%--${name}--%>
     <!--在前台获取后台通过modelandview传过来的数据-->
          ${requestScope.user}
-
-<div class="ids">
-
+<div id="ids">
+    <p>你好</p>
 </div>
 </body>
 </html>

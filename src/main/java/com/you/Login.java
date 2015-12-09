@@ -30,14 +30,19 @@ import java.util.Map;
 public class Login {
     @RequestMapping(value ="/verify",method = RequestMethod.POST)
 
+
     public ModelAndView verify(HttpServletRequest request,HttpServletResponse response) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         User user = new User(username,password);
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
         UserDao userDao = (UserDao) context.getBean("userDao");
+        userDao.check("love");
+//        Commont commont = (Commont) context.getBean("commont");
+//        commont.execute();
 //        userDao.addUser(user);
         String view = "login";
+
 
         /**
          * modelandview中的数据默认放到request里面
