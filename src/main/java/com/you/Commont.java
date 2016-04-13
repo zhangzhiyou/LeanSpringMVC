@@ -24,7 +24,7 @@ public class Commont {
      * 在执行com.you.dao.UserDao.check()方法之前执行本类的execute()方法
      * 并且可以带参数
      * */
-    @Before("execution(* com.you.dao.UserDao.check(String))")
+    @ Before("execution(* com.you.dao.UserDao.check(String))")
     public void execute(){
         System.out.println("-----这是普通类----");
     }

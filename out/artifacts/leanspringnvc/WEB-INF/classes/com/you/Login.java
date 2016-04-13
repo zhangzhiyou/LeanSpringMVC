@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
@@ -28,16 +29,30 @@ import java.util.Map;
 @Controller
 @RequestMapping("/login")
 public class Login {
-    @RequestMapping(value ="/verify",method = RequestMethod.POST)
 
+
+   // @RequestMapping(value = "/hello")
+    public ModelAndView hello(HttpServletResponse response,HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView();
+        String view="login";
+        modelAndView.setViewName(view);
+        System.out.println("nihao");
+        return modelAndView;
+    }
+    @RequestMapping(value ="/verify",method = RequestMethod.POST)
     public ModelAndView verify(HttpServletRequest request,HttpServletResponse response) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         User user = new User(username,password);
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
         UserDao userDao = (UserDao) context.getBean("userDao");
+        userDao.check("love");
+        //切面不能new一定要通过context获取
+        Commont commont = (Commont) context.getBean("commont");
+        commont.execute();
 //        userDao.addUser(user);
         String view = "login";
+        String[] str = new String[12];
 
         /**
          * modelandview中的数据默认放到request里面
@@ -66,7 +81,6 @@ public class Login {
              * */
        //     PrintWriter out = null;
 //            response.setContentType("application/json");
-//
 //            try {
 //                out=response.getWriter();
 //                out.write(userDao.finall());
@@ -80,7 +94,7 @@ public class Login {
 //            } catch (IOException e) {
 //                e.printStackTrace();
 //            }
-
+// request.setAttribute("user",userDao.finall());
             modelAndView.addObject("user",userDao.finall());
             modelAndView.setViewName(view);
         }

@@ -66,8 +66,10 @@ public class UserDao {
 
     public JSONArray finall(){
         String sql = "select * from user";
+      //  List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
 
         List list = jdbcTemplate.queryForList(sql);
+
         JSONArray jsonList = JSONArray.fromObject(list);
 
         /**

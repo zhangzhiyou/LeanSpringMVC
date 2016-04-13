@@ -9,7 +9,7 @@
     <!--</welcome-file-list>-->
     <servlet>
         <servlet-name>spitter</servlet-name>
-        <!--该类在springwebjar包下面-->
+        <!--该类在springwebjar包下面http发出请求，DispatcherServlet拦截，拦截下来后分发给不同的-->
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
@@ -24,5 +24,4 @@
             classpath:spring-config.xml
         </param-value>
     </context-param>
-
 </web-app>
