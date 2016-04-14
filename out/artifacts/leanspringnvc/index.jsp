@@ -54,6 +54,8 @@
       </div>
     </form>
   --%>
-  <%request.getRequestDispatcher("view/index.jsp").forward(request,response);%>
+  <%request.getRequestDispatcher("view/list.jsp").forward(request,response);%>
+  <%--<%request.getRequestDispatcher("view/index.jsp").forward(request,response);%>--%>
+
   </body>
 </html>

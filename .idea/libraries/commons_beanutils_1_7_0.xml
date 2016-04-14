@@ -9,7 +9,6 @@
       <root url="jar://$PROJECT_DIR$/lib/commons-logging-1.0.4.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/ezmorph-1.0.3.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/json-lib-2.2.3-jdk15.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/json-lib-2.3-jdk13.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

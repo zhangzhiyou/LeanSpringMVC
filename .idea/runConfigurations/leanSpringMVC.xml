@@ -9,7 +9,7 @@
       </artifact>
     </deployment>
     <server-settings>
-      <option name="BASE_DIRECTORY_NAME" value="Unnamed_leanSpringMVC_13" />
+      <option name="BASE_DIRECTORY_NAME" value="Unnamed_leanSpringMVC_15" />
     </server-settings>
     <predefined_log_file id="Tomcat" enabled="true" />
     <predefined_log_file id="Tomcat Catalina" enabled="true" />

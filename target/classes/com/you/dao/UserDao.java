@@ -1,6 +1,7 @@
 package com.you.dao;
 
 
+import com.you.listUser.Pagebean;
 import com.you.model.User;
 
 
@@ -31,15 +32,23 @@ public class UserDao {
 
     String sql = "insert into user(username,password) values(?,?)";
 
-    public void addUser(User user) {
-        jdbcTemplate.update(sql,
+    public int addUser(User user) {
+
+       int m= jdbcTemplate.update(sql,
                 user.getUsername(),
                 user.getPassword());
+        return m;
     }
 
     public int findtotal(String username, String password) {
         String sql = "select count(*) from user where username=? and password=?";
         int total = jdbcTemplate.queryForInt(sql, username, password);
+        return total;
+    }
+
+    public int totle(){
+        String sql = "select count(*) as total from user";
+        int total = jdbcTemplate.queryForInt(sql);
         return total;
     }
 
@@ -65,7 +74,8 @@ public class UserDao {
 ////        }
 
     public JSONArray finall(){
-        String sql = "select * from user";
+        String sql="select * from user ";
+
       //  List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
 
         List list = jdbcTemplate.queryForList(sql);
@@ -99,7 +109,59 @@ public class UserDao {
 //        }
         return jsonList;
     }
+    public JSONArray finalllist(Pagebean pagebean){
+        StringBuffer sql =new StringBuffer("select * from user ");
+        if(pagebean!=null){
+            sql.append(" limit " + pagebean.getStart() + "," + pagebean.getRows());
+        }
+        //  List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
 
+        List list = jdbcTemplate.queryForList(sql.toString());
+
+        JSONArray jsonList = JSONArray.fromObject(list);
+
+        /**
+         * 将list集合转化为map集合类
+         * */
+//        Map<String,Obj  JSONArray jsonList = JSONArray.fromObject(list);ect> map = new HashMap<String, Object>();
+//            String s="";
+//        for(Map<String,Object> m:list){
+//            for(String k : m.keySet()){
+//               s+=k+":"+m.get(k);
+//                System.out.println(k + " : " + m.get(k));
+//            }
+//        }
+//        System.out.println("***"+s);
+//        JSONObject obj = new JSONObject();
+//        Iterator it = list.iterator();
+//        for(int i=0;i<list.size();i++){
+//           User o = (User)list.get(i);
+//            obj.put("id",o.getId());
+//            obj.put("username",o.getUsername());
+//            obj.put("password",o.getPassword());
+//        }
+        //测试取出list集合中的数据
+//        Iterator it = list.iterator();
+//        while (it.hasNext()){
+//            System.out.println(it.next());
+//        }
+        return jsonList;
+    }
+
+
+    public List list(){
+        String sql = "select * from user";
+        List<Map<String, Object>> user = jdbcTemplate.queryForList(sql);
+        return user;
+    }
+
+    public int  changemanage(User user){
+//        String sql = "update user set username="+user.getUsername()+",password="+user.getPassword()+" where id="+user.getId();
+        String sql = "update user set username=?,password=? where id=?";
+
+      int number=  jdbcTemplate.update(sql,user.getUsername(),user.getPassword(),user.getId());
+        return number;
+    }
     public void check(String name){
         System.out.println("=====验证是否合法======="+name);
     }

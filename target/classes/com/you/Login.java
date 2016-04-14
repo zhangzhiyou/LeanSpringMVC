@@ -30,7 +30,6 @@ import java.util.Map;
 @RequestMapping("/login")
 public class Login {
 
-
    // @RequestMapping(value = "/hello")
     public ModelAndView hello(HttpServletResponse response,HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView();
@@ -53,7 +52,6 @@ public class Login {
 //        userDao.addUser(user);
         String view = "login";
         String[] str = new String[12];
-
         /**
          * modelandview中的数据默认放到request里面
          * */

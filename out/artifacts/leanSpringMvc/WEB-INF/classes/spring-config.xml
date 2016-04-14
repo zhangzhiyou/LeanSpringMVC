@@ -1,0 +1,45 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+         http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+    <!--配置数据原链接池-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/library"/>
+        <property name="username" value="root"/>
+        <property name="password" value="0000"/>
+    </bean>
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate">
+        <constructor-arg ref="dataSource"/>
+    </bean>
+    <bean id="userDao" class="com.you.dao.UserDao">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    <bean id="commont" class="com.you.Commont"/>
+    <!--可以使用注解-->
+    <aop:aspectj-autoproxy/>
+    <aop:config>
+        <!--4.切面(Aspect) 通知 和 切入点 共同组成了切面：时间、地点和要发生的“故事”-->
+        <aop:aspect id="myaop" ref="userDao">
+            <!--第一个*所有返回值 第二个*所有类,第三个*代表所有方法, ..代表所有参数-->
+            <!--当执行到Commont类中的execute方法时就执行切点userDao中的check方法-->
+           <!--该切点必须是spring管理的类,不能是自己new出来的类-->
+            <!--3.切入点(Pointcut)
+            通知定义了切面要发生的“故事”和时间，
+            那么切入点就定义了“故事”发生的地点，
+            例如某个类或方法的名称，Spring中允许我们方便的用正则表达式来指定-->
+            <aop:pointcut id="targit" expression="execution(* com.you.Commont.execute(..))"/>
+            <!--<aop:before method="check" pointcut-ref="targit"/>-->
+            <!--<aop:before pointcut-ref="targit" method="check"/>-->
+            <!--<aop:after pointcut-ref="targit" method="hello"/>-->
+        </aop:aspect>
+    </aop:config>
+</beans>

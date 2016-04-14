@@ -72,10 +72,7 @@
     </ConfigurationWrapper>
     <method>
       <option name="Make" enabled="true" />
-      <option name="BuildArtifacts" enabled="true">
-        <artifact name="leanspringnvc" />
-        <artifact name="leanSpringmvc" />
-      </option>
+      <option name="BuildArtifacts" enabled="true" />
     </method>
   </configuration>
 </component>

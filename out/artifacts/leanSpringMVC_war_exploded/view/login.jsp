@@ -13,8 +13,8 @@
 <head>
     <title></title>
     <meta charset="utf-8">
-    <script type="text/javascript" src="../../js/jquery.js"></script>
-    <script type="text/javascript" src="../../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
     <script type="text/javascript">
 
             <%--var dataObject = eval(${requestScope.user});--%>
