@@ -25,10 +25,10 @@
             <!--</mvc:interceptor>-->
         <!--</mvc:interceptors>-->
     <!--加载静态资源-->
-        <mvc:resources mapping="/resources/**" location="/bootstrap/"/>
-        <mvc:resources mapping="/resources1/**" location="../bootstrap/"/>
-        <mvc:resources mapping="/resourcesJquery/**" location="jquery"/>
-        <mvc:resources mapping="/resourcesEasyui/**" location="jquery-easyui-1.3.6"/>
+        <!--<mvc:resources mapping="/resources/**" location="/bootstrap/"/>-->
+        <!--<mvc:resources mapping="/resources1/**" location="../bootstrap/"/>-->
+        <!--<mvc:resources mapping="/resourcesJquery/**" location="jquery"/>-->
+        <!--<mvc:resources mapping="/resourcesEasyui/**" location="jquery-easyui-1.3.6"/>-->
 
 
     <!--会去com.you包下去寻找符合请求的注解的action-->
@@ -37,11 +37,4 @@
             <property name="prefix" value="/view/"/>
             <property name="suffix" value=".jsp"/>
         </bean>
-    <bean class ="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" >
-        <property name="messageConverters">
-            <list>
-                <!--<ref bean="mappingJacksonHttpMessageConverter" />&lt;!&ndash; json转换器 &ndash;&gt;-->
-            </list>
-        </property>
-    </bean>
 </beans>

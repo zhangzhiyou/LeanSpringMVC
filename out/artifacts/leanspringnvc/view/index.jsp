@@ -15,15 +15,13 @@
     <title></title>
 
     <!-- 新 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="resources1/bootstrap.min.css">
-
-    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
-    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script type="text/javascript" src="resources1/jquery.min.js"></script>
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script type="text/javascript" src="resources1/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../jquery-easyui-1.3.6/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../jquery-easyui-1.3.6/themes/icon.css">
+    <script type="text/javascript" src="../jquery-easyui-1.3.6/jquery.js"></script>
+    <script type="text/javascript" src="../jquery-easyui-1.3.6/jquery.min.js"></script>
+    <script type="text/javascript" src="../jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../jquery-easyui-1.3.6/locale/easyui-lang-zh_CN.js"></script>
+    <%--<script type="text/javascript" src="../vakata-jstree-2f630b4%20(2)/dist/jstree.js"></script>--%>
     <title></title>
   </head>
   <body>
@@ -48,6 +46,19 @@
          <input type="submit" name="submit" value="提交">
         </div>
       </div>
+
+
+      <table id="dg" title="班级信息" class="easyui-datagrid" fitColumns="true"  pagination="true"
+             rownumbers="true" url="gratelist"  toolbar="#tb">
+        <thead>
+        <tr>
+          <th field="cb" checkbox="true"></th>
+          <th field="id" width="50">编号</th>
+          <th field="gradeName" width="100">班级名称</th>
+          <th field="gradeDesc" width="250">班级描述</th>
+        </tr>
+        </thead>
+      </table>
     </form>
   </body>
 </html>

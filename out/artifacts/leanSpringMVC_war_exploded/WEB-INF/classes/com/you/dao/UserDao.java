@@ -155,12 +155,22 @@ public class UserDao {
         return user;
     }
 
+    // todo 修改
     public int  changemanage(User user){
 //        String sql = "update user set username="+user.getUsername()+",password="+user.getPassword()+" where id="+user.getId();
         String sql = "update user set username=?,password=? where id=?";
 
       int number=  jdbcTemplate.update(sql,user.getUsername(),user.getPassword(),user.getId());
         return number;
+    }
+
+
+    //todo 多项删除
+    public int deleteMasege(String str){
+        System.out.println(str);
+        String sql = "delete from user where id in("+str+")";
+        int nums = jdbcTemplate.update(sql);
+        return nums;
     }
     public void check(String name){
         System.out.println("=====验证是否合法======="+name);

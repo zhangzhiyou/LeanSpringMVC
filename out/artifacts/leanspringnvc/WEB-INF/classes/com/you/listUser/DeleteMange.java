@@ -1,10 +1,7 @@
 package com.you.listUser;
 
 import com.you.dao.UserDao;
-import com.you.model.User;
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import netscape.javascript.JSObject;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -14,26 +11,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by zhiyou on 16-4-14.
+ * Created by zhiyou on 16-4-15.
  */
 @Controller
-public class ChangeManage {
-    @RequestMapping("/changeManage")
-    public void changuser(HttpServletRequest request,HttpServletResponse response){
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String id = request.getParameter("id");
-        int userId = Integer.parseInt(id);
-        User user = new User(userId,username,password);
+public class DeleteMange {
+    @RequestMapping("/deleteMange")
+    public void delete(HttpServletRequest request,HttpServletResponse response){
+        String deiLds = request.getParameter("deiLds");
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
-        UserDao userDao =  context.getBean("userDao",UserDao.class);
-       int number= userDao.changemanage(user);
+        UserDao userDao = context.getBean("userDao",UserDao.class);
+        int delNums = userDao.deleteMasege(deiLds);
         JSONObject result = new JSONObject();
-        if(number>0){
-            result.put("result","true");
+        if(delNums>0){
+            result.put("success","true");
+            result.put("delNums",delNums);//前台可以根据delNums获取删除的条数
+            result.put("name","张志友");
         }
         else {
-            result.put("result","false");
+            result.put("errorMas","删除失败");
         }
         try {
             Responseutil.write(response,result);

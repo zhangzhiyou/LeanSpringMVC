@@ -52,7 +52,6 @@ public class Login {
 //        userDao.addUser(user);
         String view = "login";
         String[] str = new String[12];
-
         /**
          * modelandview中的数据默认放到request里面
          * */

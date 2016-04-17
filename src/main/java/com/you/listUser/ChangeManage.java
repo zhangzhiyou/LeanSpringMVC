@@ -26,7 +26,7 @@ public class ChangeManage {
         int userId = Integer.parseInt(id);
         User user = new User(userId,username,password);
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
-        UserDao userDao = (UserDao) context.getBean("userDao");
+        UserDao userDao =  context.getBean("userDao",UserDao.class);
        int number= userDao.changemanage(user);
         JSONObject result = new JSONObject();
         if(number>0){
