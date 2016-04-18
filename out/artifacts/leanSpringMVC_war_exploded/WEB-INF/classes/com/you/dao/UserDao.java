@@ -2,6 +2,7 @@ package com.you.dao;
 
 
 import com.you.listUser.Pagebean;
+import com.you.listUser.StringUtil;
 import com.you.model.User;
 
 
@@ -109,17 +110,25 @@ public class UserDao {
 //        }
         return jsonList;
     }
-    public JSONArray finalllist(Pagebean pagebean){
+    /*
+    *     查询所有用户名和密码
+    *        并将其封装成JSONArry类型的数据返回，
+    * */
+    public JSONArray finalllist(Pagebean pagebean ,User user){
         StringBuffer sql =new StringBuffer("select * from user ");
-        if(pagebean!=null){
-            sql.append(" limit " + pagebean.getStart() + "," + pagebean.getRows());
+        if(user!=null&& StringUtil.isNotEmpty(user.getUsername())){
+
+            sql.append("and username like '%"+user.getUsername()+"%'");
+         //   sql.append("where username like '%"+user.getUsername()+"%'");
+
         }
-        //  List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
-
-        List list = jdbcTemplate.queryForList(sql.toString());
-
-        JSONArray jsonList = JSONArray.fromObject(list);
-
+        if(pagebean!=null){
+            sql.append(" limit " + pagebean.getStart() + "," + pagebean.getRows());//进行分页
+        }
+        System.out.println(sql.toString().replaceFirst("and","where"));
+        List list = jdbcTemplate.queryForList(sql.toString().replaceFirst("and","where")); //查询结果返回的是list集合
+       // List list = jdbcTemplate.queryForList(sql.toString());
+        JSONArray jsonList = JSONArray.fromObject(list);//将list集合封装成JSONArray类型的数据
         /**
          * 将list集合转化为map集合类
          * */
@@ -161,7 +170,7 @@ public class UserDao {
         String sql = "update user set username=?,password=? where id=?";
 
       int number=  jdbcTemplate.update(sql,user.getUsername(),user.getPassword(),user.getId());
-        return number;
+        return number;//返回更新数据条数
     }
 
 
@@ -170,7 +179,7 @@ public class UserDao {
         System.out.println(str);
         String sql = "delete from user where id in("+str+")";
         int nums = jdbcTemplate.update(sql);
-        return nums;
+        return nums;//返回删除的数据条数
     }
     public void check(String name){
         System.out.println("=====验证是否合法======="+name);

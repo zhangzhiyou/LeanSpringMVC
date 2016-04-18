@@ -28,21 +28,36 @@ public class ListUser {
     @RequestMapping(value ="/studentlist")
         @ResponseBody
     public void listuser(HttpServletRequest request,HttpServletResponse response){
-        // todo 获取页面传过来的行数和列数
-        String page = request.getParameter("page");//获取jsp页面传过来的参数pags
-        String rows = request.getParameter("rows");
-        System.out.println(page+"几页几行"+rows);
-        // todo 进行分页
-        Pagebean pagebean = new Pagebean(Integer.parseInt(page),Integer.parseInt(rows));
-        ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
+
+        String page = request.getParameter("page");//获取jsp页面pags页数
+        String rows = request.getParameter("rows");//获取jsp页面rows一页多少行
+        String username = request.getParameter("username");//获取搜索时页面填入的用户名
+
+        System.out.println("用户名"+username);
+
+        if(username==null){//username 引用为空，没有分配空间，也没有实例化对向
+         username="";//引用一个空的字符串，分配了空间，实列化了对象
+     }
+
+        User user = new User();
+        user.setUsername(username);
+
+        Pagebean pagebean = new Pagebean(Integer.parseInt(page),Integer.parseInt(rows));//实列化分页类，并强制类型转换
+
+        //获取spring中定义的bean实例的对象
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");//
         UserDao userDao = (UserDao) context.getBean("userDao");
+
+        /*
+        *   将封装好JSONArray类型的数据和获取的数据总条数添加到JSONObject中
+        * */
         JSONObject result = new JSONObject();
-        JSONArray jsonArray=userDao.finalllist(pagebean);
-        int total = userDao.totle();
+        JSONArray jsonArray=userDao.finalllist(pagebean,user);//得到查询后的数据，并将其封装成JSONArray类型的数据
+        int total = userDao.totle();//户获取总的数据条数
         result.put("rows",jsonArray);
         result.put("total",total);
         try {
-            Responseutil.write(response,result);
+            Responseutil.write(response,result);//将JSONObject类型的数据写回页面
         } catch (Exception e) {
             e.printStackTrace();
         }

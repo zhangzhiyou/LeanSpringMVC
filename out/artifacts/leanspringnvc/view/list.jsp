@@ -19,9 +19,7 @@
   <script type="text/javascript">
     // todo 添加用户
     var url;
-
     //todo 删除功能
-
     $(document).ready(function(){
       $("#delete").click(function(){
        var selecteRows = $("#dg").datagrid("getSelections");//创建一个对象，把你选中的对象放在数组里;
@@ -44,8 +42,6 @@
                data 是该请求返回的数据(可能经过处理)
                textStatus 可能是"success"、 "notmodified"等
                jqXHR 是经过jQuery封装的XMLHttpRequest对象(保留其本身的所有属性和方法)
-
-
                jquery.post()方法有四个参数，
                1. 请求的url地址，
                2. 传递的参数，可以传递多个参数，中间使用"," 分开，在后台可以使用request.getPareamate方法获取
@@ -86,6 +82,9 @@
       $("#userNo").val("");
     }
 
+    /*
+    *  添加数据功能
+    */
     $(document).ready(function(){
       $("#save").click(function(){
         $("#fm").form("submit",{
@@ -128,7 +127,13 @@
     });
 
       // todo 模糊查询
-
+        $(document).ready(function(){
+            $("#select").click(function(){
+                $("#dg").datagrid('load',{
+                    username:$("#s_username").val()
+                })
+            })
+        });
 
   </script>
 </head>
